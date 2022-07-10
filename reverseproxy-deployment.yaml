@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: reverseproxy
+  name: reverseproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reverseproxy
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: reverseproxy
+    spec:
+      containers:
+      - image: ifyoma/reverseproxy
+        name: reverseproxy
+        imagePullPolicy: Always
+        resources:
+         requests:
+          memory: "1000Mi"
+          cpu: "250m"
+         limits:
+          memory: "2000Mi"
+          cpu: "500m"
+        ports:
+        - containerPort: 80
